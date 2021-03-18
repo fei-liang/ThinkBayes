@@ -44,12 +44,12 @@ def SimpleModel():
     d1 = 15.5
     d0 = d1 / 2.0 ** doublings
 
-    print 'interval (days)', interval
-    print 'interval (years)', interval / 365
-    print 'dt', dt
-    print 'doublings', doublings
-    print 'd1', d1
-    print 'd0', d0
+    print ('interval (days)', interval)
+    print ('interval (years)', interval / 365)
+    print ('dt', dt)
+    print ('doublings', doublings)
+    print ('d1', d1)
+    print ('d0', d0)
 
     # assume an initial linear measure of 0.1 cm
     d0 = 0.1
@@ -61,19 +61,19 @@ def SimpleModel():
     # what linear doubling time does that imply?
     dt = interval / doublings
 
-    print 'doublings', doublings
-    print 'dt', dt
+    print ('doublings', doublings)
+    print ('dt', dt)
 
     # compute the volumetric doubling time and RDT
     vdt = dt / 3
     rdt = 365 / vdt
 
-    print 'vdt', vdt
-    print 'rdt', rdt
+    print ('vdt', vdt)
+    print ('rdt', rdt)
 
     cdf = MakeCdf()
     p = cdf.Prob(rdt)
-    print 'Prob{RDT > 2.4}', 1-p
+    print ('Prob{RDT > 2.4}', 1-p)
 
 
 def MakeCdf():
@@ -231,7 +231,7 @@ def GenerateSample(n, pc, lam1, lam2):
 
     Returns: list of random variates
     """
-    xs = [GenerateRdt(pc, lam1, lam2) for _ in xrange(n)]
+    xs = [GenerateRdt(pc, lam1, lam2) for _ in range(n)]
     return xs
 
 
@@ -389,7 +389,7 @@ class Cache(object):
         for bucket in sorted(self.GetBuckets()):
             ss = self.GetSequence(bucket)
             diameter = BucketToCm(bucket)
-            print diameter, len(ss)
+            print (diameter, len(ss))
         
     def Correlation(self):
         """Computes the correlation between log volumes and rdts."""
@@ -421,7 +421,7 @@ class Calculator(object):
             sequences.append(seq)
 
             if i % 100 == 0:
-                print i
+                print (i)
 
         return sequences
 
@@ -727,7 +727,7 @@ def TestCorrelation(cdf):
     xs = [rdt_seq.next() for _ in range(n)]
     
     rho2 = correlation.SerialCorr(xs)
-    print rho, rho2
+    print (rho, rho2)
     cdf2 = thinkbayes.MakeCdfFromList(xs)
 
     thinkplot.Cdfs([cdf, cdf2])
@@ -737,7 +737,7 @@ def TestCorrelation(cdf):
 def main(script):
     for size in [1, 5, 10]:
         bucket = CmToBucket(size)
-        print 'Size, bucket', size, bucket
+        print ('Size, bucket', size, bucket)
 
     SimpleModel()
 
@@ -761,10 +761,10 @@ def main(script):
     calc.PlotBuckets()
 
     _ = calc.MakeSequences(1900, rho, fit)
-    print 'V0-RDT correlation', calc.cache.Correlation()
+    print ('V0-RDT correlation', calc.cache.Correlation())
 
-    print '15.5 Probability age > 8 year', calc.cache.ProbOlder(15.5, 8)
-    print '6.0 Probability age > 8 year', calc.cache.ProbOlder(6.0, 8)
+    print ('15.5 Probability age > 8 year', calc.cache.ProbOlder(15.5, 8))
+    print ('6.0 Probability age > 8 year', calc.cache.ProbOlder(6.0, 8))
 
     calc.PlotConditionalCdfs()
 

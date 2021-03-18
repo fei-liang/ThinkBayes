@@ -47,7 +47,7 @@ def print_cols(cols):
     cols: list of columns
     """
     for i, col in enumerate(cols):
-        print i, col[0], col[1]
+        print (i, col[0], col[1])
 
 
 def make_col_dict(cols, names):

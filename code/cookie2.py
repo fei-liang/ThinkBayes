@@ -55,7 +55,7 @@ def main():
     pmf.Update('vanilla')
 
     for hypo, prob in pmf.Items():
-        print hypo, prob
+        print (hypo, prob)
 
 
 if __name__ == '__main__':

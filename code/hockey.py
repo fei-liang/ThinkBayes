@@ -150,9 +150,9 @@ def ProcessScoresPairwise(pairs):
     thinkplot.Show()
 
     mu, var = thinkstats.MeanVar(lams)
-    print 'mu, sig', mu, math.sqrt(var)
+    print ('mu, sig', mu, math.sqrt(var))
 
-    print 'BOS v VAN', pairs['BOS', 'VAN']
+    print ('BOS v VAN', pairs['BOS', 'VAN'])
 
 
 def ProcessScoresTeamwise(pairs):
@@ -181,7 +181,7 @@ def ProcessScoresTeamwise(pairs):
     thinkplot.Show()
 
     mu, var = thinkstats.MeanVar(lams)
-    print 'mu, sig', mu, math.sqrt(var)
+    print ('mu, sig', mu, math.sqrt(var))
 
 
 def main():
@@ -230,8 +230,8 @@ def main():
     time_dist1 = MakeGoalTimePmf(suite1)    
     time_dist2 = MakeGoalTimePmf(suite2)
  
-    print 'MLE bruins', suite1.MaximumLikelihood()
-    print 'MLE canucks', suite2.MaximumLikelihood()
+    print ('MLE bruins', suite1.MaximumLikelihood())
+    print ('MLE canucks', suite2.MaximumLikelihood())
    
     thinkplot.Clf()
     thinkplot.PrePlot(num=2)
@@ -247,16 +247,16 @@ def main():
     p_loss = diff.ProbLess(0)
     p_tie = diff.Prob(0)
 
-    print p_win, p_loss, p_tie
+    print (p_win, p_loss, p_tie)
 
     p_overtime = thinkbayes.PmfProbLess(time_dist1, time_dist2)
     p_adjust = thinkbayes.PmfProbEqual(time_dist1, time_dist2)
     p_overtime += p_adjust / 2
-    print 'p_overtime', p_overtime 
+    print ('p_overtime', p_overtime) 
 
-    print p_overtime * p_tie
+    print (p_overtime * p_tie)
     p_win += p_overtime * p_tie
-    print 'p_win', p_win
+    print ('p_win', p_win)
 
     # win the next two
     p_series = p_win**2
@@ -264,7 +264,7 @@ def main():
     # split the next two, win the third
     p_series += 2 * p_win * (1-p_win) * p_win
 
-    print 'p_series', p_series
+    print ('p_series', p_series)
 
 
 if __name__ == '__main__':

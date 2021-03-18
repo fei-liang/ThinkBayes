@@ -114,8 +114,8 @@ def MakePosteriorPlot(suite):
     marginal_beta = suite.Marginal(1)
     marginal_beta.name = 'beta'
 
-    print 'alpha CI', marginal_alpha.CredibleInterval(50)
-    print 'beta CI', marginal_beta.CredibleInterval(50)
+    print ('alpha CI', marginal_alpha.CredibleInterval(50))
+    print ('beta CI', marginal_beta.CredibleInterval(50))
 
     thinkplot.PrePlot(num=2)
 

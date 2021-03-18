@@ -30,7 +30,7 @@ class Redis(object):
         try:
             password = os.environ['REDIS_AUTH']
         except KeyError:
-            print 'Environment variable REDIS_AUTH is not set.'
+            print ('Environment variable REDIS_AUTH is not set.')
             sys.exit()
         
         self.r = redis.StrictRedis(host=self.host, 
@@ -49,7 +49,7 @@ class Redis(object):
         dt = datetime.fromtimestamp(timestamp)
         day = dt.date().isoformat()
 
-        print dt, tripid, seconds, timestamp
+        print (dt, tripid, seconds, timestamp)
 
         if live:
             self.r.sadd('days', day)
@@ -65,7 +65,7 @@ class Redis(object):
         Returns: map from string day to unsorted list of arrival datetimes
         """
         days = self.r.smembers('days')
-        print days
+        print (days)
 
         start_time = time(hour=start_hour)
         end_time = time(hour=end_hour)
@@ -128,7 +128,7 @@ def ReadJson():
     url = 'http://developer.mbta.com/lib/rthr/red.json'
     json_text = urllib2.urlopen(url).read()
     json_obj = json.loads(json_text)
-    print json_obj
+    print (json_obj)
 
 
 def ReadAndStore(red):
@@ -151,11 +151,11 @@ def Loop(red, start_time, end_time, delay=60):
     """
     if datetime.now() < start_time:
         diff = start_time - datetime.now()
-        print 'Sleeping', diff
+        print ('Sleeping', diff)
         sleep(diff.total_seconds())
 
     while datetime.now() < end_time:
-        print 'Collecting'
+        print ('Collecting')
         ReadAndStore(red)
         sleep(delay)
 
@@ -178,7 +178,7 @@ def GetInterarrivals(arrival_map):
     """
     interarrival_seconds = []
     for day, arrivals in sorted(arrival_map.iteritems()):
-        print day, len(arrivals)
+        print (day, len(arrivals))
         arrivals.sort()
         diffs = numpy.diff(arrivals)
         diffs = [diff.total_seconds() for diff in diffs]
@@ -194,13 +194,13 @@ def main(script, command='collect'):
         start = TodayAt(16)
         end = TodayAt(18)
 
-        print start, end
+        print (start, end)
         Loop(red, start, end)
         
     elif command == 'report':
         arrival_map = red.FindArrivals()
         interarrivals = GetInterarrivals(arrival_map)
-        print repr(interarrivals)
+        print (repr(interarrivals))
 
 
 if __name__ == '__main__':

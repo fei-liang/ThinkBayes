@@ -168,7 +168,7 @@ def main():
         suite = Detector(r, f, step=1)
         suite.Update(k)
         thinkplot.Pmf(suite)
-        print suite.MaximumLikelihood()
+        print (suite.MaximumLikelihood())
 
     thinkplot.Save(root='jaynes1',
                    xlabel='Number of particles (n)',

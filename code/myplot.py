@@ -174,7 +174,7 @@ def Plot(xs, ys, style='', **options):
         try:
             options = Underride(options, color=color_iter.next())
         except StopIteration:
-            print 'Warning: Brewer ran out of colors.'
+            print ('Warning: Brewer ran out of colors.')
             Brewer.ClearIter()
         
     options = Underride(options, linewidth=3, alpha=0.8)
@@ -473,7 +473,7 @@ def SaveFormat(root, fmt='eps'):
       fmt: string format
     """
     filename = '%s.%s' % (root, fmt)
-    print 'Writing', filename
+    print ('Writing', filename)
     pyplot.savefig(filename, format=fmt, dpi=300)
 
 
@@ -501,7 +501,7 @@ save = Save
 def main():
     color_iter = Brewer.ColorGenerator(7)
     for color in color_iter:
-        print color
+        print (color)
 
 if __name__ == '__main__':
     main()
