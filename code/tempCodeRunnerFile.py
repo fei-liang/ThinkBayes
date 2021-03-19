@@ -1,6 +1,8 @@
-if __name__ == '__main__':
-    hypos = 'ABC'
-    a = Monty(hypos)
-    a.Update('B')
+    data = ['yellow','green']
+    hypos = 'AB'
+
+    a = MM(hypos)
+    a.Update(data)
+
     a.Normalize()
-    print(a.Prob('A'))
+    a.Print()

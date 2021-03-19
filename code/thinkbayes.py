@@ -1153,7 +1153,7 @@ class Suite(Pmf):
         returns: the normalizing constant
         """
         for hypo in self.Values():
-            like = self.Likelihood(data, hypo)
+            like = self.Likelihood(hypo, data)
             self.Mult(hypo, like)
         return self.Normalize()
 

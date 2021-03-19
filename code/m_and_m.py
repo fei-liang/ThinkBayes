@@ -32,7 +32,7 @@ class M_and_M(Suite):
 
     hypotheses = dict(A=hypoA, B=hypoB)
 
-    def Likelihood(self, data, hypo):
+    def Likelihood(self, hypo, data):
         """Computes the likelihood of the data under the hypothesis.
 
         hypo: string hypothesis (A or B)
@@ -47,7 +47,7 @@ class M_and_M(Suite):
 def main():
     suite = M_and_M('AB')
 
-    suite.Update(('bag1', 'yellow'))
+    suite.Update(('bag1', 'red'))
     suite.Update(('bag2', 'green'))
 
     suite.Print()
