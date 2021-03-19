@@ -29,6 +29,8 @@ import random
 import scipy.stats
 from scipy.special import erf, erfinv, gammaln
 
+import matplotlib.pyplot as plt
+
 ROOT2 = math.sqrt(2)
 
 def RandomSeed(x):
@@ -1224,6 +1226,17 @@ class Suite(Pmf):
         """Prints the hypotheses and their probabilities."""
         for hypo, prob in sorted(self.Items()):
             print (hypo, '%.3f'%prob)
+    
+    def PrintBar(self):
+        """Prints the hypotheses and their probabilities in Bar."""
+        """by liangfei"""
+        hypos = []
+        probs = []
+        for hypo, prob in (sorted(self.Items())):
+            hypos.append(hypo)
+            probs.append(prob)
+        plt.bar(hypos, probs)
+        plt.show()
 
     def MakeOdds(self):
         """Transforms from probabilities to odds.
