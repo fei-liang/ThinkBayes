@@ -14,6 +14,8 @@ import matplotlib.pyplot as pyplot
 import numpy as np
 import pandas
 
+
+
 # customize some matplotlib attributes
 #matplotlib.rc('figure', figsize=(4, 3))
 
@@ -217,6 +219,7 @@ def Plot(obj, ys=None, style='', **options):
         pyplot.plot(xs, style, **options)
     else:
         pyplot.plot(xs, ys, style, **options)
+    pyplot.show()
 
 
 def FillBetween(xs, y1, y2=None, where=None, **options):
