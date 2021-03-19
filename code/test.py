@@ -9,6 +9,8 @@
 import numpy
 from cookie2 import Cookie
 from thinkbayes import Suite
+from thinkbayes import *
+a = Pmf()
 
 
 
