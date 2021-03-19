@@ -1223,7 +1223,7 @@ class Suite(Pmf):
     def Print(self):
         """Prints the hypotheses and their probabilities."""
         for hypo, prob in sorted(self.Items()):
-            print (hypo, prob)
+            print (hypo, '%.3f'%prob)
 
     def MakeOdds(self):
         """Transforms from probabilities to odds.
