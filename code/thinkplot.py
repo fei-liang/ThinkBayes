@@ -247,7 +247,7 @@ def Bar(xs, ys, **options):
     """
     options = _UnderrideColor(options)
     options = _Underride(options, linewidth=0, alpha=0.6)
-    pyplot.bar(xs, ys, **options)
+    pyplot.bar(xs, ys, **options) 
 
 
 def Scatter(xs, ys=None, **options):
